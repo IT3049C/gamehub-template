@@ -1,6 +1,6 @@
 import {PropTypes} from 'prop-types';
 
-const WelcomeScreen = ({name, onNameChange, onGameStart}) => {
+export const WelcomeScreen = ({ name, onNameChange, onGameStart }) => {
 
   function onStartGameClick() {
     console.log(name)
@@ -25,7 +25,10 @@ const WelcomeScreen = ({name, onNameChange, onGameStart}) => {
             maxLength="15"
           />
         </div>
-        <button className="btn btn-primary" id="start-game-button" type="button" onClick={onStartGameClick}>
+        <button 
+          className="btn btn-primary" 
+          id="start-game-button" type="button" 
+          onClick={onStartGameClick}>
           Start Game!
         </button>
       </form>
@@ -37,4 +40,3 @@ WelcomeScreen.propTypes = {
   onNameChange: PropTypes.func.isRequired,
   onGameStart: PropTypes.func.isRequired
 }
-export default WelcomeScreen;

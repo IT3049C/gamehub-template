@@ -5,16 +5,19 @@ import { RockPaperScissors } from '../RPS';
 const GameScreen = ({name}) => {
   const [ game, setGame ] = useState(new RockPaperScissors(name));
   const [ selection, setSelection ] = useState(`rock`);
-  const [ score, setScore ] = useState({user: 0, cpu: 0});
+  // const [ score, setScore ] = useState({user: 0, cpu: 0});
+  const [ userScore, setUserScore ] = useState(0);
+  const [ cpuScore, setCpuScore ] = useState(0);
   const [ history, setHistory ] = useState([]);    
 
   const updateScoreAndHistory = () => {
-    setScore({...game.score});
+    // setScore({...game.score});
+    setUserScore(game.score.user)
+    setCpuScore(game.score.cpu)
     setHistory([...game.gameHistoryLog]);
   }
   
   const onGoButtonClick = () => {
-    console.log(`Go button was clicked`);
     game.play(selection);
     console.log(game.score);
     updateScoreAndHistory();
@@ -23,14 +26,16 @@ const GameScreen = ({name}) => {
   const onResetGameButtonClick = () => {
     console.log(`Reset button was clicked`);
     setGame(new RockPaperScissors(name));
-    setScore({user: 0, cpu: 0});
+    // setScore({user: 0, cpu: 0});
+    setUserScore(0)
+    setCpuScore(0)
     setHistory([]);
   }
 
   return (
     <div id="game-screen">
       <div id="score-tally">
-        <p id="score"> {name}: {score.user} v CPU: {score.cpu}</p>
+        <p id="score"> {name}: {userScore} v CPU: {cpuScore}</p>
         <span>{selection}</span>
       </div>
 
